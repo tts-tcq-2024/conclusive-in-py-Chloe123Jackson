@@ -1,7 +1,6 @@
 temperature_breach_stmt=['PASSIVE_COOLING', 'HI_ACTIVE_COOLING','MED_ACTIVE_COOLING']
 temperature_breach_limits=[[0,35],[0,45],[0,40]]
 BreachType_email_msg={'TOO_LOW': 'is too low','TOO_HIGH': 'is too high'}
-alertTarget_dict={'TO_CONTROLLER': 'TO_EMAIL'}
 
 def infer_breach(value, lowerLimit, upperLimit):
   if value < lowerLimit:
