@@ -37,6 +37,6 @@ def send_to_email(breachType):
   print_breachtype(recepient, breachType)
   
   
-  def print_breachtype(recipient, breachType):
-    print(f'To: {recepient}')
-    print(f'Hi, the temperature is {BreachType_email_msg[breachType]}')
+def print_breachtype(recipient, breachType):
+  print(f'To: {recepient}')
+  print(f'Hi, the temperature is {BreachType_email_msg[breachType]}')
