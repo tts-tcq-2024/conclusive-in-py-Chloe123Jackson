@@ -1,5 +1,5 @@
 import unittest
-import typewise-alert
+import typewise_alert
 
 
 class TypewiseTest(unittest.TestCase):
