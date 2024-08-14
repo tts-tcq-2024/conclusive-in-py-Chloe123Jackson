@@ -34,7 +34,7 @@ def send_to_controller(breachType):
 
 def send_to_email(breachType):
   recepient = "a.b@c.com"
-  print_breachtype(recipient, breachType)
+  print_breachtype(recepient, breachType)
   
   
   def print_breachtype(recipient, breachType):
