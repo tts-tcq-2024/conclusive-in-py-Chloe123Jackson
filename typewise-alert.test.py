@@ -26,7 +26,7 @@ class TypewiseTest(unittest.TestCase):
     typewise_alert.check_and_alert('TO_EMAIL', {'coolingType':'PASSIVE_COOLING'}, 35)
     print_mock.assert_called_with('Hi, the temperature is normal')
   @patch('builtins.print')
-  def check_controller_email_send(self):
+  def check_controller_email_send(self,print_mock):
     typewise_alert.send_to_controller('TOO_HIGH')
     print_mock.assert_called_with('65261, TOO_HIGH')
     typewise_alert.send_to_email('TOO_LOW')
