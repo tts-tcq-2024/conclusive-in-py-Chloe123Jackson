@@ -25,8 +25,6 @@ class TypewiseTest(unittest.TestCase):
     print_mock.assert_called_with('65261, NORMAL')
     typewise_alert.check_and_alert('TO_EMAIL', {'coolingType':'PASSIVE_COOLING'}, 35)
     print_mock.assert_called_with('Hi, the temperature is normal')
-    # self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', {'coolingType':'PASSIVE_COOLING'}, 35) == 1)
-    # self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL', {'coolingType':'PASSIVE_COOLING'}, 35) == 1)
 
 if __name__ == '__main__':
   unittest.main()
