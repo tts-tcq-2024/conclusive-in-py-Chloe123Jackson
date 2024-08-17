@@ -14,8 +14,8 @@ def classify_temperature_breach(coolingType, temperatureInC):
   lowerLimit = 0
   upperLimit = 0
   statement_index=temperature_breach_stmt.index(coolingType)
-  lowerlimit=temperature_breach_limits[statement_index][0]
-  upperlimit=temperature_breach_limits[statement_index][1]
+  lowerLimit=temperature_breach_limits[statement_index][0]
+  upperLimit=temperature_breach_limits[statement_index][1]
   return infer_breach(temperatureInC, lowerLimit, upperLimit)
 
 
