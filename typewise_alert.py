@@ -1,6 +1,3 @@
-temperature_breach_stmt=['PASSIVE_COOLING', 'HI_ACTIVE_COOLING','MED_ACTIVE_COOLING']
-temperature_breach_limits=[[0,35],[0,45],[0,40]]
-BreachType_email_msg={'TOO_LOW': 'too low','TOO_HIGH': 'too high', 'NORMAL': 'normal'}
 
 def infer_breach(value, lowerLimit, upperLimit):
   if value < lowerLimit:
@@ -13,6 +10,8 @@ def infer_breach(value, lowerLimit, upperLimit):
 def classify_temperature_breach(coolingType, temperatureInC):
   lowerLimit = 0
   upperLimit = 0
+  temperature_breach_stmt=['PASSIVE_COOLING', 'HI_ACTIVE_COOLING','MED_ACTIVE_COOLING']
+  temperature_breach_limits=[[0,35],[0,45],[0,40]]
   statement_index=temperature_breach_stmt.index(coolingType)
   lowerLimit=temperature_breach_limits[statement_index][0]
   upperLimit=temperature_breach_limits[statement_index][1]
@@ -35,4 +34,5 @@ def send_to_controller(breachType):
 def send_to_email(breachType):
   recepient = "a.b@c.com"
   print(f'To: {recepient}')
+  BreachType_email_msg={'TOO_LOW': 'too low','TOO_HIGH': 'too high', 'NORMAL': 'normal'}
   print(f'Hi, the temperature is {BreachType_email_msg[breachType]}')
