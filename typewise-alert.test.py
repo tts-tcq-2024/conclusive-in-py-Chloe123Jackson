@@ -29,7 +29,7 @@ class TypewiseTest(unittest.TestCase):
     print_mock.assert_called_with('65261, TOO_HIGH')
     typewise_alert.send_to_email('TOO_LOW')
     print_mock.assert_called_with('Hi, the temperature is too low')
-    self.assertTrue(typewise_alert.check_and_alert('MED_ACTIVE_COOLING', {'coolingType':'PASSIVE_COOLING'},41) == None)
+    self.assertTrue(typewise_alert.check_and_alert('MED_ACTIVE_COOLING', {'coolingType':'PASSIVE_COOLING'},41) == 404)
     
 
 if __name__ == '__main__':
