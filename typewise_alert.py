@@ -27,8 +27,9 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
       send_to_controller(breachType)
     elif alertTarget == 'TO_EMAIL':
       send_to_email(breachType)
-  except:
+  except AlertTargetOtherNotAllowed:
     print("Please provide alertTarget as TO_CONTROLLER or TO_EMAIL")
+    return 404
 
 def send_to_controller(breachType):
   header = 0xfeed
