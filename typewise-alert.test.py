@@ -3,9 +3,7 @@ import typewise_alert
 from unittest.mock import patch
 
 
-class TypewiseTest(unittest.TestCase):
-  @patch('builtins.print')
-    
+class TypewiseTest(unittest.TestCase):    
   def test_infers_breach_as_per_limits(self):
     self.assertTrue(typewise_alert.infer_breach(20, 50, 100) == 'TOO_LOW')
     self.assertTrue(typewise_alert.infer_breach(50, 50, 100) == 'NORMAL')
@@ -21,6 +19,7 @@ class TypewiseTest(unittest.TestCase):
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 40) == 'NORMAL')
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', -2) == 'TOO_LOW')
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 41) == 'TOO_HIGH')
+  @patch('builtins.print')
   def test_infers_breach_and_sends_confirmation(self,print_mock):
     typewise_alert.check_and_alert('TO_CONTROLLER', {'coolingType':'PASSIVE_COOLING'}, 35)
     print_mock.assert_called_with('0xfeed, NORMAL')
