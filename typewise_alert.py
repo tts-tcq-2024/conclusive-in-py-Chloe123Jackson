@@ -1,3 +1,5 @@
+temperature_breach_stmt=['PASSIVE_COOLING', 'HI_ACTIVE_COOLING','MED_ACTIVE_COOLING']
+temperature_breach_limits=[[0,35],[0,45],[0,40]]
 
 def infer_breach(value, lowerLimit, upperLimit):
   if value < lowerLimit:
@@ -10,8 +12,6 @@ def infer_breach(value, lowerLimit, upperLimit):
 def classify_temperature_breach(coolingType, temperatureInC):
   lowerLimit = 0
   upperLimit = 0
-  temperature_breach_stmt=['PASSIVE_COOLING', 'HI_ACTIVE_COOLING','MED_ACTIVE_COOLING']
-  temperature_breach_limits=[[0,35],[0,45],[0,40]]
   statement_index=temperature_breach_stmt.index(coolingType)
   lowerLimit=temperature_breach_limits[statement_index][0]
   upperLimit=temperature_breach_limits[statement_index][1]
