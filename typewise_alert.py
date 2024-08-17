@@ -24,6 +24,8 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
     send_to_controller(breachType)
   elif alertTarget == 'TO_EMAIL':
     send_to_email(breachType)
+  else:
+    return 404
 
 
 def send_to_controller(breachType):
