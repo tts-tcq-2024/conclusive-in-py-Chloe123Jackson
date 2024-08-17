@@ -22,7 +22,9 @@ class TypewiseTest(unittest.TestCase):
   @patch('builtins.print')
   def test_infers_breach_and_sends_confirmation(self,print_mock):
     typewise_alert.check_and_alert('TO_CONTROLLER', {'coolingType':'PASSIVE_COOLING'}, 35)
-    print_mock.assert_called_with('0xfeed, NORMAL')
+    print_mock.assert_called_with('65261, NORMAL')
+    typewise_alert.check_and_alert('TO_EMAIL', {'coolingType':'PASSIVE_COOLING'}, 35)
+    print_mock.assert_called_with('Hi, the temperature is normal')
     # self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', {'coolingType':'PASSIVE_COOLING'}, 35) == 1)
     # self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL', {'coolingType':'PASSIVE_COOLING'}, 35) == 1)
 
