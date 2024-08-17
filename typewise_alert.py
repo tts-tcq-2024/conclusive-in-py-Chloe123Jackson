@@ -37,7 +37,7 @@ def send_to_controller(breachType):
 
 def send_to_email(breachType):
   recepient = "a.b@c.com"
-  print(f'To: {recepient}')
+  # print(f'To: {recepient}')
   print(f'Hi, the temperature is {BreachType_email_msg[breachType]}')
   
 class AlertTargetOtherNotAllowed(Exception):
