@@ -19,6 +19,7 @@ class TypewiseTest(unittest.TestCase):
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 40) == 'NORMAL')
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', -2) == 'TOO_LOW')
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 41) == 'TOO_HIGH')
+    self.assertTrue(typewise_alert.check_and_alert('MED_ACTIVE_COOLING', {'coolingType':'PASSIVE_COOLING'},41) == None)
   @patch('builtins.print')
   def test_infers_breach_and_sends_confirmation(self,print_mock):
     typewise_alert.check_and_alert('TO_CONTROLLER', {'coolingType':'PASSIVE_COOLING'}, 35)
@@ -29,7 +30,6 @@ class TypewiseTest(unittest.TestCase):
     print_mock.assert_called_with('65261, TOO_HIGH')
     typewise_alert.send_to_email('TOO_LOW')
     print_mock.assert_called_with('Hi, the temperature is too low')
-    self.assertTrue(typewise_alert.check_and_alert('MED_ACTIVE_COOLING', {'coolingType':'PASSIVE_COOLING'},41) == None)
     
 
 if __name__ == '__main__':
