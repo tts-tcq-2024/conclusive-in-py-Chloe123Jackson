@@ -19,16 +19,22 @@ class TypewiseTest(unittest.TestCase):
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 40) == 'NORMAL')
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', -2) == 'TOO_LOW')
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 41) == 'TOO_HIGH')
-    self.assertTrue(typewise_alert.check_and_alert('MED_ACTIVE_COOLING', {'coolingType':'PASSIVE_COOLING'},41) == None)
   @patch('builtins.print')
   def test_infers_breach_and_sends_confirmation(self,print_mock):
     typewise_alert.check_and_alert('TO_CONTROLLER', {'coolingType':'PASSIVE_COOLING'}, 35)
     print_mock.assert_called_with('65261, NORMAL')
     typewise_alert.check_and_alert('TO_EMAIL', {'coolingType':'PASSIVE_COOLING'}, 35)
     print_mock.assert_called_with('Hi, the temperature is normal')
-    typewise_alert.send_to_controller('TOO_HIGH')
+    
+    #MED_ACTIVE_COOLING provided instead of TO_CONTROLLER/TO_EMAIL
+    self.assertTrue(typewise_alert.check_and_alert('MED_ACTIVE_COOLING', {'coolingType':'PASSIVE_COOLING'},41) == None) 
+    #Invalid cooling type provided
+    self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL', {'coolingType':'NORMAL_COOLING'},50) == None) 
+    
+  def test_msg_to_controller_and_email(self):
+    typewise_alert.send_to_controller_or_email('TOO_HIGH',0)
     print_mock.assert_called_with('65261, TOO_HIGH')
-    typewise_alert.send_to_email('TOO_LOW')
+    typewise_alert.send_to_controller_or_email('TOO_LOW',1)
     print_mock.assert_called_with('Hi, the temperature is too low')
     
 
