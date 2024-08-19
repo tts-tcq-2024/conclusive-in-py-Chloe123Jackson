@@ -42,7 +42,7 @@ def send_to_controller_or_email(breachType,recepient_index):
   recepient = "a.b@c.com"
   if recepient_index == 0:
     print(f'{header}, {breachType}')
-  if recepient_index == 1:'
+  if recepient_index == 1:
     print(f'To: {recepient}')
     print(f'Hi, the temperature is {BreachType_email_msg[breachType]}')
 
