@@ -1,4 +1,4 @@
-temperature_breach_stmt=['PASSIVE_COOLING', 'HI_ACTIVE_COOLING','MED_ACTIVE_COOLING']
+cooling_type=['PASSIVE_COOLING', 'HI_ACTIVE_COOLING','MED_ACTIVE_COOLING']
 temperature_breach_limits=[[0,35],[0,45],[0,40]]
 BreachType_email_msg={'TOO_LOW': 'too low','TOO_HIGH': 'too high', 'NORMAL': 'normal'}
 alertTargets=['TO_CONTROLLER','TO_EMAIL']
@@ -15,7 +15,13 @@ def infer_breach(value, lowerLimit, upperLimit):
 def classify_temperature_breach(coolingType, temperatureInC):
   lowerLimit = 0
   upperLimit = 0
-  statement_index=temperature_breach_stmt.index(coolingType) # exception required
+  try:
+    if coolingType in cooling_type:
+      statement_index=cooling_type.index(coolingType)
+    else:
+      raise OtherCoolingTypeNotAllowed
+  except:
+    print("Only cooling types PASSIVE_COOLING, MID_ACTIVE_COOLING and HI_ACTIVE_COOLING are allowed")
   lowerLimit=temperature_breach_limits[statement_index][0]
   upperLimit=temperature_breach_limits[statement_index][1]
   return infer_breach(temperatureInC, lowerLimit, upperLimit)
@@ -40,12 +46,10 @@ def send_to_controller_or_email(breachType,recepient_index):
     print(f'To: {recepient}')
     print(f'Hi, the temperature is {BreachType_email_msg[breachType]}')
 
-
-# def send_to_email(breachType):
-#   recepient = "a.b@c.com"
-#   # print(f'To: {recepient}')
-#   print(f'Hi, the temperature is {BreachType_email_msg[breachType]}')
   
 class AlertTargetOtherNotAllowed(Exception):
   "Raised when alertTarget is set to a value other than TO_CONTROLLER or TO_EMAIL"
+  pass
+class OtherCoolingTypeNotAllowed(Exception):
+  "Raised when a cooling Type apart from PASSIVE_COOLING, MID_ACTIVE_COOLING,HI_ACTIVE_COOLING is used in input"
   pass
