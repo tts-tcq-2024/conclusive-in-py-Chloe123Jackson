@@ -30,7 +30,7 @@ class TypewiseTest(unittest.TestCase):
     self.assertTrue(typewise_alert.check_and_alert('MED_ACTIVE_COOLING', {'coolingType':'PASSIVE_COOLING'},41) == None) 
     #Invalid cooling type provided
     self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL', {'coolingType':'NORMAL_COOLING'},50) == None) 
-    
+  @patch('builtins.print')
   def test_msg_to_controller_and_email(self,print_mock):
     typewise_alert.send_to_controller_or_email('TOO_HIGH',0)
     print_mock.assert_called_with('65261, TOO_HIGH')
