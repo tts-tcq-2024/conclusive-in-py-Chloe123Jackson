@@ -23,13 +23,12 @@ def classify_temperature_breach(coolingType, temperatureInC):
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
   breachType =classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
   try:
-    if (alertTarget != 'TO_CONTROLLER' and alertTarget != 'TO_EMAIL'):
-      raise AlertTargetOtherNotAllowed
-    else:
-      if alertTarget == 'TO_CONTROLLER':
+    if alertTarget == 'TO_CONTROLLER':
         send_to_controller(breachType)
       elif alertTarget == 'TO_EMAIL':
         send_to_email(breachType)
+    else:
+      raise AlertTargetOtherNotAllowed    
   except AlertTargetOtherNotAllowed:
     print("Please provide alertTarget as TO_CONTROLLER or TO_EMAIL")
 
