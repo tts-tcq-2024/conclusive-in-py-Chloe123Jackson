@@ -18,12 +18,12 @@ def classify_temperature_breach(coolingType, temperatureInC):
   try:
     if coolingType in cooling_type:
       statement_index=cooling_type.index(coolingType)
+      lowerLimit=temperature_breach_limits[statement_index][0]
+      upperLimit=temperature_breach_limits[statement_index][1]
     else:
       raise OtherCoolingTypeNotAllowed
   except:
     print("Only cooling types PASSIVE_COOLING, MID_ACTIVE_COOLING and HI_ACTIVE_COOLING are allowed")
-  lowerLimit=temperature_breach_limits[statement_index][0]
-  upperLimit=temperature_breach_limits[statement_index][1]
   return infer_breach(temperatureInC, lowerLimit, upperLimit)
 
 
