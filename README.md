@@ -48,6 +48,8 @@ You have seen a few workflows in this repository. They are quality-gates to prev
 
 During the next four weeks, what improvement do you plan in your code-quality practice? (in your regular work, not in this repository!)
 
-**-->Since I work as a tester, not as a developer, there's little scope to directly implement the code quality practises. However, the test implementation can indirectly use a few of the techniques
--->The comments currently provided do not add value to the script. Rather the code itself can point to the logic of the tests.This would reduce the amount of time spent in adding comments to an implementation thereby improving the efficiency
--->There is a lot of duplication in how the test implementations are currently being used. That could be modified to reuse the existing implementations**
+**-->Introduce quality gates in the CI/CD pipeline similar to the ones observed, such as checks for code duplication and complexity. This will help in maintaining a consistent standard of code quality and catching potential issues early.
+-->Encourage the team to refactor functions with high cyclomatic complexity
+-->Commit to increasing unit test coverage across all projects. Regularly review and write tests for uncovered lines of code, ensuring all possible variations are accounted for. This will lead to more robust and reliable code.
+-->Promote a culture of continuous refactoring where the team regularly revisits and refines the codebase
+-->Plan to integrate static code analysis tools into the development workflow to automatically identify potential code smells, bugs, and security vulnerabilities.**
